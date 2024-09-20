@@ -44,3 +44,4 @@ jobs:
             docker stop hsr-scanner-server || true
             docker rm hsr-scanner-server || true
             docker run -d --name hsr-scanner-server -p 8000:8000 mumaw/hsr-scanner-server:latest
+            docker image prune || true

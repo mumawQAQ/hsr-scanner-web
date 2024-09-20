@@ -10,7 +10,7 @@ set -e
 # Function to display usage instructions
 usage() {
     echo "Usage: $0 /path/to/directory [exclude_dir1 exclude_dir2 ...]"
-    echo "Example: $0 /home/user/documents node_modules .git"
+    echo "Example: $0 /var/www/static images"
     exit 1
 }
 
@@ -63,7 +63,10 @@ find "$DIRECTORY" "${FIND_EXCLUDE_PARAMS[@]}" -type f -print | while read -r FIL
         '{file: $file, checksum: $checksum}' >> "$TEMP_FILE"
 done
 
-# Combine all JSON objects into a single JSON array
-jq -s '.' "$TEMP_FILE" > checksums.json
 
-echo "✅ Checksums have been successfully saved to 'checksums.json'."
+CHECKSUM_PATH="/home/ubuntu/static/checksum.json"
+
+# Combine all JSON objects into a single JSON array
+jq -s '.' "$TEMP_FILE" > "$CHECKSUM_PATH"
+
+echo "✅ Checksums have been successfully saved to $CHECKSUM_PATH."

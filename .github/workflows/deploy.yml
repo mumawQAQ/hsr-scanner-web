@@ -32,7 +32,7 @@ jobs:
           push: true
           tags: mumaw/hsr-scanner-server:latest
 
-      # Deploy to AWS EC2
+    # Deploy to AWS EC2
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.5
         with:
@@ -40,8 +40,21 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            # Pull the latest Docker image
             docker pull mumaw/hsr-scanner-server:latest
+            
+            # Stop the existing container if it exists
             docker stop hsr-scanner-server || true
+            
+            # Remove the existing container if it exists
             docker rm hsr-scanner-server || true
-            docker run -d --name hsr-scanner-server -p 8000:8000 -v /home/ubuntu/static/:/app/static/ mumaw/hsr-scanner-server:latest
-            docker image prune || true
+            
+            # Run the new container with volume binding for static files
+            docker run -d \
+              --name hsr-scanner-server \
+              -p 8000:8000 \
+              -v /home/ubuntu/static/:/app/static/ \
+              mumaw/hsr-scanner-server:latest
+            
+            # Prune all unused Docker images
+            docker image prune -a -f || true

@@ -16,3 +16,6 @@ app.add_middleware(
 app.include_router(static_file.router)
 
 
+@app.get("/health")
+def health():
+    return {'status': 'ok'}

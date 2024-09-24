@@ -32,13 +32,12 @@ jobs:
           push: true
           tags: mumaw/hsr-scanner-server:latest
 
-    # Deploy to AWS EC2
-      - name: Deploy to EC2
+      - name: Deploy to vultr
         uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          password: ${{ secrets.SSH_PASSWORD }}
           script: |
             # Pull the latest Docker image
             docker pull mumaw/hsr-scanner-server:latest

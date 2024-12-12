@@ -3,6 +3,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import React from "react";
 import {ThemeProvider} from "next-themes";
+import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
+import {AppSidebar} from "@/components/app-sidebar";
+import {ClerkProvider} from "@clerk/nextjs";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -26,15 +29,23 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-        <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <ClerkProvider afterSignOutUrl="/">
+            <html lang="en" suppressHydrationWarning>
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            >
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="hsr-scanner">
+                <SidebarProvider>
+                    <AppSidebar/>
+                    <main>
+                        <SidebarTrigger/>
+                        {children}
+                    </main>
+                </SidebarProvider>
+            </ThemeProvider>
+            </body>
+            </html>
+        </ClerkProvider>
 
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="hsr-scanner">
-            {children}
-        </ThemeProvider>
-        </body>
-        </html>
     );
 }

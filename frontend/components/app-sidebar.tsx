@@ -17,6 +17,7 @@ import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/
 import {ChevronDown} from "lucide-react";
 import React from "react";
 import {useRouter} from "next/navigation";
+import {ModeToggle} from "@/components/node-toggle";
 
 
 export function AppSidebar() {
@@ -188,7 +189,9 @@ export function AppSidebar() {
                     </SidebarGroup>
                 </Collapsible>
             </SidebarContent>
-            <SidebarFooter/>
+            <SidebarFooter className="flex items-center">
+                    <ModeToggle/>
+            </SidebarFooter>
         </Sidebar>
     )
 }

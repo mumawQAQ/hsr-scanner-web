@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from "@/components/ui/button";
 import {db} from "@/lib/db";
 import CustomTypewriter from "@/components/custom-typewrite";
+import Image from "next/image";
 
 const InstallPage = async () => {
 
@@ -27,7 +28,7 @@ const InstallPage = async () => {
 
 
     return (
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col items-center gap-4">
             <div>
                 <CustomTypewriter/>
             </div>
@@ -36,7 +37,7 @@ const InstallPage = async () => {
                     {
                         latestDownloadUrl === "" ? (
                             <span>暂无下载方式</span>
-                        ): (
+                        ) : (
                             <a href={latestDownloadUrl} download>
                                 立即下载
                             </a>
@@ -44,6 +45,16 @@ const InstallPage = async () => {
                     }
                 </Button>
             </div>
+            <div className="shadow-2xl rounded-md overflow-hidden shadow-black dark:shadow-white">
+                <Image
+                    src="/images/hsr-scanner-preview.png"
+                    alt="preview"
+                    width={900}
+                    height={900}
+                />
+            </div>
+
+
         </div>
     );
 };

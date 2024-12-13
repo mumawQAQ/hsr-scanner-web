@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button} from "@/components/ui/button";
 import {db} from "@/lib/db";
+import CustomTypewriter from "@/components/custom-typewrite";
 
 const InstallPage = async () => {
 
@@ -26,18 +27,23 @@ const InstallPage = async () => {
 
 
     return (
-        <div>
-            <Button disabled={downloadDisable}>
-            {
-                latestDownloadUrl === "" ? (
-                    <span>暂无下载方式</span>
-                ): (
-                    <a href={latestDownloadUrl} download>
-                        立即下载
-                    </a>
-                )
-            }
-            </Button>
+        <div className="flex flex-col items-center gap-2">
+            <div>
+                <CustomTypewriter/>
+            </div>
+            <div>
+                <Button disabled={downloadDisable}>
+                    {
+                        latestDownloadUrl === "" ? (
+                            <span>暂无下载方式</span>
+                        ): (
+                            <a href={latestDownloadUrl} download>
+                                立即下载
+                            </a>
+                        )
+                    }
+                </Button>
+            </div>
         </div>
     );
 };

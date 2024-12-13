@@ -1,12 +1,192 @@
-import {Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarHeader,} from "@/components/ui/sidebar"
+"use client"
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarGroup,
+    SidebarGroupContent,
+    SidebarGroupLabel,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+    SidebarMenuSub,
+    SidebarMenuSubItem,
+} from "@/components/ui/sidebar"
+import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
+import {ChevronDown} from "lucide-react";
+import React from "react";
+import {useRouter} from "next/navigation";
+
 
 export function AppSidebar() {
+    const router = useRouter()
+
+
+    const handleRoute = (path: string) => {
+        router.push(path)
+    }
+
+
     return (
-        <Sidebar>
+        <Sidebar variant="inset">
             <SidebarHeader/>
             <SidebarContent>
-                <SidebarGroup/>
-                <SidebarGroup/>
+                <Collapsible defaultOpen>
+                    <SidebarGroup>
+                        <SidebarGroupLabel asChild>
+                            <CollapsibleTrigger>
+                                HSR Scanner
+                                <ChevronDown
+                                    className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"/>
+                            </CollapsibleTrigger>
+                        </SidebarGroupLabel>
+                        <CollapsibleContent>
+                            <SidebarGroupContent>
+                                <SidebarMenu>
+                                    <Collapsible defaultOpen>
+                                        <SidebarMenuItem>
+                                            <CollapsibleTrigger asChild>
+                                                <SidebarMenuButton>
+                                                    快速开始
+                                                </SidebarMenuButton>
+                                            </CollapsibleTrigger>
+                                            <CollapsibleContent>
+                                                <SidebarMenuSub>
+                                                    <SidebarMenuSubItem>
+                                                        <SidebarMenuButton onClick={() => {
+                                                            handleRoute('/hsr-scanner/install')
+                                                        }}>
+                                                            安装
+                                                        </SidebarMenuButton>
+                                                    </SidebarMenuSubItem>
+                                                </SidebarMenuSub>
+                                                <SidebarMenuSub>
+                                                    <SidebarMenuSubItem>
+                                                        <SidebarMenuButton>
+                                                            使用教程
+                                                        </SidebarMenuButton>
+                                                    </SidebarMenuSubItem>
+                                                </SidebarMenuSub>
+                                                <SidebarMenuSub>
+                                                    <SidebarMenuSubItem>
+                                                        <SidebarMenuButton>
+                                                            常见问题
+                                                        </SidebarMenuButton>
+                                                    </SidebarMenuSubItem>
+                                                </SidebarMenuSub>
+                                            </CollapsibleContent>
+                                        </SidebarMenuItem>
+                                    </Collapsible>
+                                    <Collapsible defaultOpen>
+                                        <SidebarMenuItem>
+                                            <CollapsibleTrigger asChild>
+                                                <SidebarMenuButton>
+                                                    开发指南
+                                                </SidebarMenuButton>
+                                            </CollapsibleTrigger>
+                                            <CollapsibleContent>
+                                                <SidebarMenuSub>
+                                                    <SidebarMenuSubItem>
+                                                        <SidebarMenuButton>
+                                                            项目架构介绍
+                                                        </SidebarMenuButton>
+                                                    </SidebarMenuSubItem>
+                                                </SidebarMenuSub>
+                                                <SidebarMenuSub>
+                                                    <SidebarMenuSubItem>
+                                                        <SidebarMenuButton>
+                                                            环境配置
+                                                        </SidebarMenuButton>
+                                                    </SidebarMenuSubItem>
+                                                </SidebarMenuSub>
+                                                <SidebarMenuSub>
+                                                    <SidebarMenuSubItem>
+                                                        <SidebarMenuButton>
+                                                            常见问题
+                                                        </SidebarMenuButton>
+                                                    </SidebarMenuSubItem>
+                                                </SidebarMenuSub>
+                                            </CollapsibleContent>
+                                        </SidebarMenuItem>
+                                    </Collapsible>
+                                    <Collapsible defaultOpen>
+                                        <SidebarMenuItem>
+                                            <CollapsibleTrigger asChild>
+                                                <SidebarMenuButton>
+                                                    关于
+                                                </SidebarMenuButton>
+                                            </CollapsibleTrigger>
+                                            <CollapsibleContent>
+                                                <SidebarMenuSub>
+                                                    <SidebarMenuSubItem>
+                                                        <SidebarMenuButton>
+                                                            更新日志
+                                                        </SidebarMenuButton>
+                                                    </SidebarMenuSubItem>
+                                                </SidebarMenuSub>
+                                            </CollapsibleContent>
+                                        </SidebarMenuItem>
+                                    </Collapsible>
+                                </SidebarMenu>
+                            </SidebarGroupContent>
+                        </CollapsibleContent>
+
+                    </SidebarGroup>
+                </Collapsible>
+                <Collapsible defaultOpen>
+                    <SidebarGroup>
+                        <SidebarGroupLabel asChild>
+                            <CollapsibleTrigger>
+                                HSR Scanner 模板配置工具
+                                <ChevronDown
+                                    className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"/>
+                            </CollapsibleTrigger>
+                        </SidebarGroupLabel>
+                        <CollapsibleContent>
+                            <SidebarGroupContent>
+                                <SidebarMenu>
+                                    <Collapsible defaultOpen>
+                                        <SidebarMenuItem>
+                                            <CollapsibleTrigger asChild>
+                                                <SidebarMenuButton>
+                                                    工具
+                                                </SidebarMenuButton>
+                                            </CollapsibleTrigger>
+                                            <CollapsibleContent>
+                                                <SidebarMenuSub>
+                                                    <SidebarMenuSubItem>
+                                                        <SidebarMenuButton>
+                                                            模板列表
+                                                        </SidebarMenuButton>
+                                                    </SidebarMenuSubItem>
+                                                </SidebarMenuSub>
+                                            </CollapsibleContent>
+                                        </SidebarMenuItem>
+                                    </Collapsible>
+                                    <Collapsible defaultOpen>
+                                        <SidebarMenuItem>
+                                            <CollapsibleTrigger asChild>
+                                                <SidebarMenuButton>
+                                                    关于
+                                                </SidebarMenuButton>
+                                            </CollapsibleTrigger>
+                                            <CollapsibleContent>
+                                                <SidebarMenuSub>
+                                                    <SidebarMenuSubItem>
+                                                        <SidebarMenuButton>
+                                                            更新日志
+                                                        </SidebarMenuButton>
+                                                    </SidebarMenuSubItem>
+                                                </SidebarMenuSub>
+                                            </CollapsibleContent>
+                                        </SidebarMenuItem>
+                                    </Collapsible>
+                                </SidebarMenu>
+                            </SidebarGroupContent>
+                        </CollapsibleContent>
+                    </SidebarGroup>
+                </Collapsible>
             </SidebarContent>
             <SidebarFooter/>
         </Sidebar>

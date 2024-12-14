@@ -56,7 +56,7 @@ export function AppSidebar() {
                                                 <SidebarMenuSub>
                                                     <SidebarMenuSubItem>
                                                         <SidebarMenuButton onClick={() => {
-                                                            handleRoute('/hsr-scanner/install')
+                                                            handleRoute('/public/hsr-scanner/install')
                                                         }}>
                                                             安装
                                                         </SidebarMenuButton>

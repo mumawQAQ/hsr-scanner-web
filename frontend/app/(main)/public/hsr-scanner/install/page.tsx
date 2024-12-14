@@ -3,6 +3,7 @@ import {Button} from "@/components/ui/button";
 import {db} from "@/lib/db";
 import CustomTypewriter from "@/components/custom-typewrite";
 import Image from "next/image";
+import TemplateCode from "@/components/template-code";
 
 export const dynamic = 'force-dynamic'
 
@@ -47,6 +48,9 @@ const InstallPage = async () => {
                     }
                 </Button>
             </div>
+            <div>
+                <TemplateCode/>
+            </div>
             <div className="shadow-2xl rounded-md overflow-hidden shadow-black dark:shadow-white">
                 <Image
                     src="/images/hsr-scanner-preview.png"
@@ -55,8 +59,6 @@ const InstallPage = async () => {
                     height={900}
                 />
             </div>
-
-
         </div>
     );
 };

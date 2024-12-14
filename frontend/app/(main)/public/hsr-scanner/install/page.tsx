@@ -4,6 +4,8 @@ import {db} from "@/lib/db";
 import CustomTypewriter from "@/components/custom-typewrite";
 import Image from "next/image";
 
+export const dynamic = 'force-dynamic'
+
 const InstallPage = async () => {
 
     let latestVersion = await db.hSRScannerVersion.findFirst({

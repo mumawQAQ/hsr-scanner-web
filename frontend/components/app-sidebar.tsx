@@ -18,6 +18,7 @@ import {ChevronDown} from "lucide-react";
 import React from "react";
 import {useRouter} from "next/navigation";
 import {ModeToggle} from "@/components/node-toggle";
+import {UserButton} from "@clerk/nextjs";
 
 
 export function AppSidebar() {
@@ -190,7 +191,18 @@ export function AppSidebar() {
                 </Collapsible>
             </SidebarContent>
             <SidebarFooter className="flex items-center">
-                    <ModeToggle/>
+                <ModeToggle/>
+                <div>
+                    <UserButton
+                        appearance={{
+                            elements: {
+                                avatarBox: {
+                                    avatarBox: "h-[48px] w-[48px]",
+                                }
+                            }
+                        }}
+                    />
+                </div>
             </SidebarFooter>
         </Sidebar>
     )

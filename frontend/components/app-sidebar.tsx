@@ -26,6 +26,13 @@ const HSR_SCANNER_MAP = {
     update_log: `${HSR_SCANNER_PATH}/update-log`,
 }
 
+const HSR_SCANNER_TEMPLATE_PATH = '/public/hsr-scanner-template'
+
+const HSR_SCANNER_TEMPLATE_MAP = {
+    templates: `${HSR_SCANNER_TEMPLATE_PATH}/templates`,
+    update_log: `${HSR_SCANNER_TEMPLATE_PATH}/update-log`,
+}
+
 type sidebarRouteType = { name: string, subTriggers: { name: string, routes: { name: string, path: string }[] }[] }
 
 const SIDEBAR_ROUTES: sidebarRouteType[] = [
@@ -86,7 +93,16 @@ const SIDEBAR_ROUTES: sidebarRouteType[] = [
                 routes: [
                     {
                         name: '模板列表',
-                        'path': ''
+                        'path': HSR_SCANNER_TEMPLATE_MAP.templates
+                    },
+                ]
+            },
+            {
+                name: '关于',
+                routes: [
+                    {
+                        name: '更新日志',
+                        path: HSR_SCANNER_TEMPLATE_MAP.update_log
                     }
                 ]
             }

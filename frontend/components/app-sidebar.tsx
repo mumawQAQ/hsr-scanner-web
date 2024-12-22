@@ -29,7 +29,7 @@ const HSR_SCANNER_MAP = {
 const HSR_SCANNER_TEMPLATE_PATH = '/public/hsr-scanner-template'
 
 const HSR_SCANNER_TEMPLATE_MAP = {
-    templates: `${HSR_SCANNER_TEMPLATE_PATH}/templates`,
+    templates: `${HSR_SCANNER_TEMPLATE_PATH}/templates/hot`,
     update_log: `${HSR_SCANNER_TEMPLATE_PATH}/update-log`,
 }
 

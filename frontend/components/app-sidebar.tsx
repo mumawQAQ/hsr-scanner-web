@@ -42,6 +42,10 @@ const SIDEBAR_ROUTES: sidebarRouteType[] = [
                     {
                         name: '使用教程',
                         path: ''
+                    },
+                    {
+                        name: '常见问题',
+                        path: ''
                     }
                 ]
             },
@@ -57,7 +61,7 @@ const SIDEBAR_ROUTES: sidebarRouteType[] = [
                         path: ''
                     },
                     {
-                        name: '常见配置',
+                        name: '常见问题',
                         path: ''
                     }
                 ]

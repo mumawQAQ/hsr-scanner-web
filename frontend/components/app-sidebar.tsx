@@ -20,6 +20,11 @@ import {useRouter} from "next/navigation";
 import {ModeToggle} from "@/components/node-toggle";
 import {UserButton} from "@clerk/nextjs";
 
+const HSR_SCANNER_PATH = '/public/hsr-scanner'
+const HSR_SCANNER_MAP = {
+    install: `${HSR_SCANNER_PATH}/install`,
+    update_log: `${HSR_SCANNER_PATH}/update-log`,
+}
 
 export function AppSidebar() {
     const router = useRouter()
@@ -57,7 +62,7 @@ export function AppSidebar() {
                                                 <SidebarMenuSub>
                                                     <SidebarMenuSubItem>
                                                         <SidebarMenuButton onClick={() => {
-                                                            handleRoute('/public/hsr-scanner/install')
+                                                            handleRoute(HSR_SCANNER_MAP.install)
                                                         }}>
                                                             安装
                                                         </SidebarMenuButton>
@@ -122,7 +127,9 @@ export function AppSidebar() {
                                             <CollapsibleContent>
                                                 <SidebarMenuSub>
                                                     <SidebarMenuSubItem>
-                                                        <SidebarMenuButton>
+                                                        <SidebarMenuButton onClick={() => {
+                                                            handleRoute(HSR_SCANNER_MAP.update_log)
+                                                        }}>
                                                             更新日志
                                                         </SidebarMenuButton>
                                                     </SidebarMenuSubItem>

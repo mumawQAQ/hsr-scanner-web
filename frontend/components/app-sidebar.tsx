@@ -89,15 +89,6 @@ const SIDEBAR_ROUTES: sidebarRouteType[] = [
                         'path': ''
                     }
                 ]
-            },
-            {
-                name: '关于',
-                routes: [
-                    {
-                        name: '更新日志',
-                        path: ''
-                    }
-                ]
             }
         ]
     }

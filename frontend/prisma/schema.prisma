@@ -43,6 +43,7 @@ model HSRScannerUpdateLog {
 model HSRScannerTemplate {
   id    String @id @default(uuid())
   title String
+  desc  String
   code  String @db.Text
   likes Int    @default(0)
 

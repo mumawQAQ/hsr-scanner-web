@@ -8,6 +8,19 @@ datasource db {
   relationMode = "prisma"
 }
 
+model Profile {
+  id       String @id @default(uuid())
+  userId   String @unique
+  name     String
+  imageUrl String @db.Text
+  email    String @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  HSRScannerTemplate HSRScannerTemplate[]
+}
+
 model HSRScannerVersion {
   id          String  @id @default(uuid())
   version     String  @unique
@@ -25,4 +38,19 @@ model HSRScannerUpdateLog {
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
+}
+
+model HSRScannerTemplate {
+  id    String @id @default(uuid())
+  title String
+  code  String @db.Text
+  likes Int    @default(0)
+
+  profileId String
+  profile   Profile @relation(fields: [profileId], references: [id])
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+
+  @@index([profileId])
 }

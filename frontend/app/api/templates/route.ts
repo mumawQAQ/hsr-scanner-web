@@ -12,7 +12,7 @@ export async function DELETE(req: Request) {
         }
 
         // check if template belongs to user
-        const template = await db.hSRScannerTemplate.findUnique({
+        const template = await db.hSRScannerTemplate.findFirst({
             where: {
                 id: templateId,
                 profile: {

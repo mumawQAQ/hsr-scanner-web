@@ -12,6 +12,8 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {useAuth} from "@clerk/nextjs";
 import {toast} from "react-toastify";
+import axios from "axios";
+import {useRouter} from "next/navigation";
 
 const formSchema = z.object({
     title: z.string().min(1, {
@@ -34,6 +36,7 @@ const formSchema = z.object({
 
 const CreateTemplateModal = () => {
     const {isOpen, onClose, type} = useModal();
+    const router = useRouter();
     const isModalOpen = isOpen && type === "createTemplate";
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -51,8 +54,15 @@ const CreateTemplateModal = () => {
         return;
     }
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        try {
+            await axios.post("/api/templates", values);
+            form.reset();
+            router.refresh();
+            onClose();
+        } catch (error) {
+            toast.error("创建失败,请稍后重试")
+        }
     }
 
     const handleClose = () => {
@@ -62,7 +72,7 @@ const CreateTemplateModal = () => {
 
     return (
         <Dialog open={isModalOpen} onOpenChange={handleClose}>
-            <DialogContent className="bg-white text-black p-0 overflow-hidden">
+            <DialogContent className=" p-0 overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">创建模板</DialogTitle>
                 </DialogHeader>
@@ -109,8 +119,8 @@ const CreateTemplateModal = () => {
                                 )}
                             />
                         </div>
-                        <DialogFooter className="bg-gray-100 px-6 py-4">
-                            <Button type='submit' disabled={isLoading}>
+                        <DialogFooter className="px-6 py-4">
+                            <Button type='submit' variant="secondary" disabled={isLoading}>
                                 创建
                             </Button>
                         </DialogFooter>

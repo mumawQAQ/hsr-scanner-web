@@ -10,6 +10,7 @@ import Header from "@/components/header";
 import ModalProvider from "@/components/providers/modal-provider";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import GoogleAdsense from "@/components/google-adsence";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -38,9 +39,6 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-            <script async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7846357332345223"
-                    crossOrigin="anonymous"></script>
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="hsr-scanner">
                 <ModalProvider/>
                 <SidebarProvider>
@@ -54,6 +52,7 @@ export default function RootLayout({
                     </SidebarInset>
                 </SidebarProvider>
             </ThemeProvider>
+            <GoogleAdsense/>
             </body>
             </html>
         </ClerkProvider>

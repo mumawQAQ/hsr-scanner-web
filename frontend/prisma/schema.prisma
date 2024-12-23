@@ -49,7 +49,7 @@ model HSRScannerTemplate {
   likes Int    @default(0)
 
   profileId String
-  profile   Profile @relation(fields: [profileId], references: [id])
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
@@ -64,8 +64,8 @@ model ProfileLikeTemplate {
   profileId  String
   templateId String
 
-  profile  Profile            @relation(fields: [profileId], references: [id])
-  template HSRScannerTemplate @relation(fields: [templateId], references: [id])
+  profile  Profile            @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  template HSRScannerTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt

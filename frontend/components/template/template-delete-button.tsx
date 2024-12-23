@@ -18,6 +18,7 @@ const TemplateDeleteButton = ({templateId}: TemplateDeleteButtonProps) => {
             router.refresh();
         } catch (error) {
             toast.error("删除失败,请稍后重试")
+            console.error(error);
         }
     }
     return (

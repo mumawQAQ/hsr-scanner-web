@@ -22,7 +22,7 @@ const TemplateLikeButton = ({templateId, liked, likeCount}: TemplateLikeButtonPr
     useEffect(() => {
         setCurrentLikeCount(likeCount);
         setIsLiked(liked);
-    }, [likeCount]);
+    }, [likeCount, liked]);
 
     const handleLike = async () => {
         // check if user is logged in

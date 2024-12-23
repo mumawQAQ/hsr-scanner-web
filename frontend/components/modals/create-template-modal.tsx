@@ -62,6 +62,7 @@ const CreateTemplateModal = () => {
             onClose();
         } catch (error) {
             toast.error("创建失败,请稍后重试")
+            console.log(error)
         }
     }
 

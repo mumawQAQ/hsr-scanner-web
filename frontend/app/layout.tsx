@@ -34,11 +34,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
+        <html lang="en" suppressHydrationWarning>
+        <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+        <GoogleAdsense/>
         <ClerkProvider>
-            <html lang="en" suppressHydrationWarning>
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="hsr-scanner">
                 <ModalProvider/>
                 <SidebarProvider>
@@ -52,10 +53,9 @@ export default function RootLayout({
                     </SidebarInset>
                 </SidebarProvider>
             </ThemeProvider>
-            <GoogleAdsense/>
-            </body>
-            </html>
         </ClerkProvider>
+        </body>
+        </html>
 
     );
 }

@@ -10,7 +10,6 @@ import Header from "@/components/header";
 import ModalProvider from "@/components/providers/modal-provider";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Head from "next/head";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -38,9 +37,6 @@ export default function RootLayout({
         <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-        <Head>
-            <meta name="google-adsense-account" content="ca-pub-7846357332345223"/>
-        </Head>
         <ClerkProvider>
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="hsr-scanner">
                 <ModalProvider/>

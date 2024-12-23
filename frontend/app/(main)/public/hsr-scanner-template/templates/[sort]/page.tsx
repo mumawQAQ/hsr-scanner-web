@@ -18,7 +18,7 @@ const TemplatesPage = async ({params}: TemplatesPageProps) => {
     const {sort} = await params;
     const {userId} = await auth();
 
-    const sortBy = sort === "hot" ? "likes" : "createdAt";
+    const sortBy = sort === "hot" ? "likes" : "createAt";
 
     const templates = await db.hSRScannerTemplate.findMany({
         orderBy: {

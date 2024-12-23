@@ -6,6 +6,8 @@ import {ThumbsUp} from "lucide-react";
 import TemplateSortButton from "@/components/template-sort-button";
 import {db} from "@/lib/db";
 import CreateTemplateButton from "@/components/create-template-button";
+import TemplateDeleteButton from "@/components/template-delete-button";
+import {auth} from "@clerk/nextjs/server";
 
 type TemplatesPageProps = {
     params: Promise<{
@@ -15,12 +17,16 @@ type TemplatesPageProps = {
 
 const TemplatesPage = async ({params}: TemplatesPageProps) => {
     const {sort} = await params;
+    const {userId} = await auth()
     const sortBy = sort === "hot" ? "likes" : "createAt";
 
 
     const templates = await db.hSRScannerTemplate.findMany({
         orderBy: {
             [sortBy]: "desc"
+        },
+        include: {
+            profile: true
         }
     })
 
@@ -49,7 +55,11 @@ const TemplatesPage = async ({params}: TemplatesPageProps) => {
                                     </Button>
                                     <span className="px-2">{template.likes}</span>
                                 </div>
-                                <Button variant="destructive">删除</Button>
+                                {
+                                    template.profile.userId === userId && (
+                                        <TemplateDeleteButton templateId={template.id}/>
+                                    )
+                                }
                             </CardFooter>
                         </Card>
                     ))

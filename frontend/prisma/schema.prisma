@@ -19,6 +19,7 @@ model Profile {
   updatedAt DateTime @updatedAt
 
   HSRScannerTemplate HSRScannerTemplate[]
+  likedTemplates     ProfileLikeTemplate[]
 }
 
 model HSRScannerVersion {
@@ -53,5 +54,23 @@ model HSRScannerTemplate {
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
 
+  likedBy ProfileLikeTemplate[]
+
   @@index([profileId])
+}
+
+model ProfileLikeTemplate {
+  id         String @id @default(uuid())
+  profileId  String
+  templateId String
+
+  profile  Profile            @relation(fields: [profileId], references: [id])
+  template HSRScannerTemplate @relation(fields: [templateId], references: [id])
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+
+  @@unique([profileId, templateId])
+  @@index([profileId])
+  @@index([templateId])
 }

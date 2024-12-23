@@ -10,6 +10,8 @@ import {z} from "zod"
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
+import {useAuth} from "@clerk/nextjs";
+import {toast} from "react-toastify";
 
 const formSchema = z.object({
     title: z.string().min(1, {
@@ -33,7 +35,6 @@ const formSchema = z.object({
 const CreateTemplateModal = () => {
     const {isOpen, onClose, type} = useModal();
     const isModalOpen = isOpen && type === "createTemplate";
-
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -43,6 +44,12 @@ const CreateTemplateModal = () => {
         }
     })
     const isLoading = form.formState.isSubmitting
+    const {userId} = useAuth()
+
+    if (!userId && isModalOpen) {
+        toast.warning("请先登录后创建模板");
+        return;
+    }
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values)

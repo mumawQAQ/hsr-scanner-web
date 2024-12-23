@@ -8,6 +8,8 @@ import {AppSidebar} from "@/components/app-sidebar";
 import {ClerkProvider} from "@clerk/nextjs";
 import Header from "@/components/header";
 import ModalProvider from "@/components/providers/modal-provider";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -44,6 +46,7 @@ export default function RootLayout({
                         <Header/>
                         <main className="flex flex-1 flex-col gap-4 p-4">
                             {children}
+                            <ToastContainer/>
                         </main>
                     </SidebarInset>
                 </SidebarProvider>

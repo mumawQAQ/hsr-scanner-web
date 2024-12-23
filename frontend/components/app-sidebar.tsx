@@ -15,8 +15,9 @@ import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/
 import React from "react";
 import {useRouter} from "next/navigation";
 import {ModeToggle} from "@/components/node-toggle";
-import {UserButton} from "@clerk/nextjs";
+import {SignInButton, useAuth, UserButton} from "@clerk/nextjs";
 import {ChevronDown} from "lucide-react";
+import {Button} from "@/components/ui/button";
 
 
 const HSR_SCANNER_PATH = '/public/hsr-scanner'
@@ -112,6 +113,7 @@ const SIDEBAR_ROUTES: sidebarRouteType[] = [
 
 export function AppSidebar() {
     const router = useRouter()
+    const {userId} = useAuth()
 
 
     const handleRoute = (path: string) => {
@@ -165,15 +167,22 @@ export function AppSidebar() {
             <SidebarFooter className="flex items-center">
                 <ModeToggle/>
                 <div>
-                    <UserButton
-                        appearance={{
-                            elements: {
-                                avatarBox: {
-                                    avatarBox: "h-[48px] w-[48px]",
+                    {
+                        userId ? (<UserButton
+                            appearance={{
+                                elements: {
+                                    avatarBox: {
+                                        avatarBox: "h-[48px] w-[48px]",
+                                    }
                                 }
-                            }
-                        }}
-                    />
+                            }}
+                        />) : (
+                            <SignInButton>
+                                <Button variant="link">登录</Button>
+                            </SignInButton>
+                        )
+                    }
+
                 </div>
             </SidebarFooter>
         </Sidebar>

@@ -9,6 +9,7 @@ import {ClerkProvider} from "@clerk/nextjs";
 import Header from "@/components/header";
 import ModalProvider from "@/components/providers/modal-provider";
 import {ToastContainer} from "react-toastify";
+import Script from "next/script";
 import "react-toastify/dist/ReactToastify.css";
 
 const geistSans = localFont({
@@ -38,6 +39,10 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
+            <Script async
+                    strategy="afterInteractive"
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7846357332345223"
+                    crossOrigin="anonymous"/>
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} storageKey="hsr-scanner">
                 <ModalProvider/>
                 <SidebarProvider>

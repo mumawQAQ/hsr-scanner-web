@@ -1,10 +1,116 @@
+"use client"
 import React from 'react';
+import {useModal} from "@/hooks/use-modal";
+
+import {Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle} from "@/components/ui/dialog";
+
+import {zodResolver} from "@hookform/resolvers/zod"
+import {useForm} from "react-hook-form"
+import {z} from "zod"
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
+
+const formSchema = z.object({
+    title: z.string().min(1, {
+        message: "模板名称不能为空"
+    }).max(10, {
+        message: "模板名称不能超过10个字符"
+    }),
+
+    description: z.string().min(1, {
+        message: "模板描述不能为空"
+    }).max(10, {
+        message: "模板描述不能超过10个字符"
+    }),
+
+    code: z.string().min(1, {
+        message: "模板代码不能为空"
+    })
+
+})
 
 const CreateTemplateModal = () => {
-    return (
-        <div>
+    const {isOpen, onClose, type} = useModal();
+    const isModalOpen = isOpen && type === "createTemplate";
 
-        </div>
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            title: "",
+            description: "",
+            code: ""
+        }
+    })
+    const isLoading = form.formState.isSubmitting
+
+    function onSubmit(values: z.infer<typeof formSchema>) {
+        console.log(values)
+    }
+
+    const handleClose = () => {
+        form.reset();
+        onClose();
+    }
+
+    return (
+        <Dialog open={isModalOpen} onOpenChange={handleClose}>
+            <DialogContent className="bg-white text-black p-0 overflow-hidden">
+                <DialogHeader className="pt-8 px-6">
+                    <DialogTitle className="text-2xl text-center font-bold">创建模板</DialogTitle>
+                </DialogHeader>
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                        <div className="space-y-8 px-6">
+                            <FormField
+                                control={form.control}
+                                name="title"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>模板名称</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="输入模板名称" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="description"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>模板描述</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="输入模板描述" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="code"
+                                render={({field}) => (
+                                    <FormItem>
+                                        <FormLabel>模板代码</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="输入模板代码" {...field} />
+                                        </FormControl>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <DialogFooter className="bg-gray-100 px-6 py-4">
+                            <Button type='submit' disabled={isLoading}>
+                                创建
+                            </Button>
+                        </DialogFooter>
+                    </form>
+                </Form>
+            </DialogContent>
+        </Dialog>
     );
 };
 

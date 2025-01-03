@@ -25,6 +25,7 @@ const HSR_SCANNER_PATH = '/public/hsr-scanner'
 const HSR_SCANNER_MAP = {
     install: `${HSR_SCANNER_PATH}/install`,
     update_log: `${HSR_SCANNER_PATH}/update-log`,
+    instruction: `${HSR_SCANNER_PATH}/instruction`,
 }
 
 const HSR_SCANNER_TEMPLATE_PATH = '/public/hsr-scanner-template'
@@ -49,7 +50,7 @@ const SIDEBAR_ROUTES: sidebarRouteType[] = [
                     },
                     {
                         name: '使用教程',
-                        path: ''
+                        path: HSR_SCANNER_MAP.instruction
                     },
                     {
                         name: '常见问题',

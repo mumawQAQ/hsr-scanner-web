@@ -1,12 +1,12 @@
 import React from 'react';
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
-import TemplateCode from "@/components/template/template-code";
-import TemplateSortButton from "@/components/template/template-sort-button";
+import TemplateCode from "@/app/(main)/public/hsr-scanner-template/templates/[sort]/template-code";
+import TemplateSortButton from "@/app/(main)/public/hsr-scanner-template/templates/[sort]/template-sort-button";
 import {db} from "@/lib/db";
 import CreateTemplateButton from "@/components/create-template-button";
-import TemplateDeleteButton from "@/components/template/template-delete-button";
+import TemplateDeleteButton from "@/app/(main)/public/hsr-scanner-template/templates/[sort]/template-delete-button";
 import {auth} from "@clerk/nextjs/server";
-import TemplateLikeButton from "@/components/template/template-like-button";
+import TemplateLikeButton from "@/app/(main)/public/hsr-scanner-template/templates/[sort]/template-like-button";
 
 type TemplatesPageProps = {
     params: Promise<{

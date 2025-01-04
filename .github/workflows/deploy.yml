@@ -1,0 +1,27 @@
+name: frontend deploy
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up SSH and run commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+
+          script: |
+            cd /home/ubuntu/hsr-scanner-web/frontend
+            git pull
+            npm install
+            npx prisma generate
+            npx prisma db push
+            export NODE_ENV=production
+            npm run build
+            pm2 reload frontend
+
+
